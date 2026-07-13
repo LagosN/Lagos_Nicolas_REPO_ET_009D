@@ -204,3 +204,117 @@ def agregar_plan(codigo, nombre, tipo, duracion, acceso_piscina, incluye_clases,
     inscripciones[codigo] = [precio, cupos]
     print("Se agrego el plan")
     return True
+
+
+
+def opc_4():
+    while True:    
+        codigo = input("Ingresa el nuevo codigo para agregar: ").upper()
+        codigo_v = v_codigo(codigo)
+        if codigo_v is False:
+            print("Codigo ya existe .")
+            return False
+        
+        nombre = input("Ingresa el nombre del plan:")
+        nombre_v = v_texto(nombre)
+        if nombre_v is False:
+            print("Nombre invalido")
+            return False
+        
+        tipo = int(input("Ingresa el tipo  [1] anual, [2]trimestral, [3] semestral:"))
+        tipo_v = tipo1(tipo)
+        if tipo_v is False:
+            print("Tipo invalido debes agregar numero entre 1 y 3")
+            return False
+            
+        if tipo == 1:
+            tipo = "anual"
+            
+        if tipo ==2:
+            tipo = "trismestral"
+            
+        if tipo == 3:
+            tipo = "semestral"
+        
+        duracion = input("Ingresa el tiempo de uso del plan: ")
+        duracion_v = numero_mayor_q(duracion)
+        if duracion_v is False:
+            print("Debes agregar un numero mayor a 0")
+            return False
+        
+        acceso_piscina1 = input("Ingreso a piscina  s = si quieres  n = no quiero acceso: ").lower()
+        accceso_piscina_v = acceso(acceso_piscina1)
+        if accceso_piscina_v is None:
+            print("Dato mal ingresado solo puedes agregar s o n")
+            return
+        if acceso_piscina1 == "s":
+            acceso_piscina1 =True
+        if acceso_piscina1 == "n":
+            acceso_piscina1 = False
+
+        incluye_clases1 = input("Acceso a clases extras?  s = si quieres  n = no quiero acceso: ").lower()
+        incluye_clases1_v = acceso(incluye_clases1)
+        if incluye_clases1_v  is None:
+            print("Dato mal ingresado solo puedes agregar s o n")
+            return False
+        if incluye_clases1 == "s":
+            incluye_clases1 = True
+        if incluye_clases1 == "n":
+            incluye_clases1 == False
+
+        horario = input("Ingresa cuando se usara el gym ( mañana, tarde, libre, noche)").lower()
+        horario_v = v_texto(horario)
+        if horario_v is False:
+            return False
+        
+        precio = input("Ingresa el valor total: ")
+        precio_v = numero_mayor_q(precio)
+        if precio_v is False:
+            print("Error, debes agregar un valor valido (100000)")
+            return False
+        
+        cupos = input("Ingresa los cupos disponibles: ")
+        cupos_v = numero_igual_q(cupos)
+        if cupos_v is False:
+            print("Error, debes agregar un numero")
+            return False
+
+        agregar_plan(codigo, nombre, tipo, duracion, acceso_piscina1, incluye_clases1, horario, precio, cupos)
+        break
+  
+
+def eliminar_plan():
+    codigo = input("Ingresa el codigo a buscar: ").lower
+    codigo_v = buscar_codigo(codigo)
+    if codigo_v is False:
+        print("Codigo no existe")
+        return False
+    if codigo in inscripciones:
+        eliminar = inscripciones.pop(codigo)
+        eliminar2 = planes.pop(codigo)    
+        print(f"Plan eliminado: {eliminar}")
+        print(f"Plan eliminado: {eliminar2}")
+        return True
+    
+
+
+def menu_general():
+    while True:
+        opciones_menu()
+        opc = leer_opcion()
+        if opc ==1:
+            busqueda(planes, inscripciones)
+        if opc == 2:
+            opc_2(planes, inscripciones)
+        if opc == 3:
+            opcion_3 ()
+        if opc == 4:
+            opc_4()
+        if opc == 5:
+            eliminar_plan()
+        if opc == 6:
+            print("Programa finalizado")
+            break
+
+
+menu_general()
