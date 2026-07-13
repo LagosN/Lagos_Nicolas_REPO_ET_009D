@@ -1,0 +1,3 @@
+Este es un archivo de ejemplo creado automáticamente dentro de la carpeta 'carpeta_para_examen'.
+
+Reemplaza este contenido con el que necesites para tu repositorio.
