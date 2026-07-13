@@ -107,3 +107,100 @@ def buscar_codigo(codigo):
         return False
     
 def num(num):
+
+
+def opcion_3( ):
+    codigo = input("Ingresa el codigo a buscar:").upper()
+    codigo_v=buscar_codigo(codigo)
+    if codigo_v is False:
+        return
+    
+    nuevo_precio = input("Ingresa el nuevo valor:")
+    precio_v = num(nuevo_precio)
+    if precio_v is False:
+        return
+    
+    actualizar_precio(codigo,nuevo_precio)
+
+
+def actualizar_precio(codigo, nuevo_precio):
+    if codigo not in inscripciones:
+        print("No esta inscrito")
+        return False
+    nuevo_precio1 = int(nuevo_precio)
+    inscripciones[codigo] = nuevo_precio1
+    print("Precio actualizado")
+    return True
+
+#opcion_3()
+
+#código, nombre, tipo, duración, acceso a piscina, inclusión de clases, horario, precio y cupos
+
+def v_texto(texto):
+    if texto == "":
+        print("No puede quedar vacio.")
+        return False
+
+    return True
+
+#Agregar .upper()
+def v_codigo(codigo):
+    if codigo == "":
+        print("No puede quedar vacio.")
+        return False
+    if codigo in planes:
+        return False
+    else:
+        return True
+    
+def numero_mayor_q(num):
+    try:
+        if num == "":
+            return False
+        num1 = int(num)
+        if num1 < 0: 
+            return False
+        else:
+            return True
+    except ValueError:
+        
+        return False
+
+def numero_igual_q(num):
+    try:
+        if num == "":
+            return False
+        num1 = int(num)
+        if num1 <= 0:
+            
+            return False
+        else:
+            return True
+    except ValueError:
+        
+        return False
+
+def tipo1(tipo):
+    if 1 <= tipo <=3:
+        return True
+    else:
+        return False
+
+
+def acceso(ap):
+    if ap == "":
+        None
+    if ap == "s":
+        return True
+    if ap == "n":
+        return False
+    else:
+        return None
+
+
+#validar false por codigo
+def agregar_plan(codigo, nombre, tipo, duracion, acceso_piscina, incluye_clases, horario, precio, cupos):
+    planes[codigo] = [nombre,tipo,duracion,acceso_piscina, incluye_clases, horario,precio,cupos]
+    inscripciones[codigo] = [precio, cupos]
+    print("Se agrego el plan")
+    return True
