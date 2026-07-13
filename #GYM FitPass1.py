@@ -53,15 +53,20 @@ def busqueda_opcion_1(tipo_plan):
         print("No pueded quedar vacio.")
         return False
     print("Paso")
-    return tipo_plan
+    return True
 
 def busqueda( planes, inscripciones):
     tipo_plan = input("Ingresa el tipo de plan a buscar: (anual, mensual, trimestral)").strip().lower()
     plan = busqueda_opcion_1(tipo_plan)
+    if plan is False:
+        return
     encontrado = False
     for codigo in planes:
         if tipo_plan in planes [codigo][1]:
-            print(f"Codigo del plan: {codigo} | Cupos disponibles: {inscripciones[codigo][1]}")
+            
+            cupo_total = inscripciones[codigo][1]
+            print(f"Codigo del plan: {codigo} | ")
+            print(f"Cantidad total de cupos: {cupo_total}")
             encontrado = True
             return
         if not encontrado:
@@ -107,7 +112,17 @@ def buscar_codigo(codigo):
         return False
     
 def num(num):
-
+    try:
+        if num == "":
+            print(" No puede queda vacio.")
+        num1 = int(num)
+        if num1 <= 0:
+            print("El numero debe ser mayor a 0")
+            return
+        else:
+            return num1
+    except ValueError:
+        print("Error, solo se aceptan numeros")
 
 def opcion_3( ):
     codigo = input("Ingresa el codigo a buscar:").upper()
@@ -204,7 +219,6 @@ def agregar_plan(codigo, nombre, tipo, duracion, acceso_piscina, incluye_clases,
     inscripciones[codigo] = [precio, cupos]
     print("Se agrego el plan")
     return True
-
 
 
 def opc_4():
